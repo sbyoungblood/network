@@ -1,21 +1,24 @@
 <template>
   <div class="post-card">
     <div class="row profile-row">
-      <div class="col-md-2 pt-3 ps-3 pb-3 d-flex justify-content-center">
+      <div class="col-md-2 ps-5 pt-5 d-flex justify-content-start">
         <img :src="post.creator.picture" alt="profile-img" class="profile-img rounded-circle elevation-5">
       </div>
-      <div class="col-md-10 p-0 d-flex flex-column justify-content-center">
+      <div class="col-md-7 pt-5 ps-4 d-flex flex-column justify-content-center">
         <div class="profile-name">{{ post.creator.name }}</div>
-        <div>other</div>
+        <div>{{post.createdAt}}</div>
+      </div>
+      <div class="col-md-3 pt-5 pe-5 d-flex justify-content-end align-items-center">
+        <span class="mdi mdi-heart-outline heart">{{ post.likes.length }}</span>
       </div>
     </div>
     <div class="row body-row my-4">
-      <div class="col-md-12 px-4">
+      <div class="col-md-12 px-5">
         {{post.body}}
       </div>                
     </div>
     <div class="row img-row justify-content-center mb-4">
-      <div class="col-md-11 p-0">
+      <div class="col-md-12 px-5 pb-4">
         <img :src="post.imgUrl" alt="" class="post-img elevation-5">
       </div>
     </div>
@@ -60,6 +63,16 @@ export default {
   text-transform: capitalize;
   font-size: 16pt;
   font-weight: bold;
+}
+
+.heart {
+  color: #0062ff;
+  font-size: 30pt;
+}
+
+.likes{
+  color: #0062ff;
+  font-size: 30pt;
 }
 
 </style>

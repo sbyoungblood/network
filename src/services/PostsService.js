@@ -8,7 +8,7 @@ async getPosts(){
   const res = await api.get('api/posts')
   logger.log('GET POSTS', res.data)
   AppState.posts = res.data.posts.map(p => new Post(p))
-  logger.log('APPSTATE POSTS', AppState.posts)
+  // logger.log('APPSTATE POSTS', AppState.posts)
 }
 }
 

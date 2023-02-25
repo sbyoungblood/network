@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header class="mb-4 sticky-top">
     <Navbar />
   </header>
   <main>
