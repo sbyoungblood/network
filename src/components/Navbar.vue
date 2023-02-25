@@ -1,8 +1,9 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+  <nav class="navbar navbar-expand-lg px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      <div class="d-flex flex-column align-items-center">
-        <img alt="logo" src="../assets/img/cw-logo.png" height="45" />
+      <div class="d-flex flex-column justify-content-center">
+        <span class="mdi mdi-alpha-n-circle-outline n-icon d-flex align-items-center">
+          <span class="network-logo">ETWORK</span></span>
       </div>
     </router-link>
     <button
@@ -16,14 +17,14 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto">
+    <div class="collapse navbar-collapse d-flex justify-content-end pe-2" id="navbarText">
+      <!-- <ul class="navbar-nav me-auto">
         <li>
           <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
             About
           </router-link>
         </li>
-      </ul>
+      </ul> -->
       <!-- LOGIN COMPONENT HERE -->
       <Login />
     </div>
@@ -45,7 +46,7 @@ a:hover {
   text-decoration: none;
 }
 
-.nav-link {
+/* .nav-link {
   text-transform: uppercase;
 }
 
@@ -59,6 +60,23 @@ a:hover {
   nav {
     height: 64px;
   }
+} */
+
+.n-icon{
+  font-size: 50pt;
+  color: white;
+}
+
+.network-logo{
+  font-size: 20pt;
+  font-family: 'Roboto', sans-serif;
+}
+
+.navbar{
+  height: 100px;
+  margin: 0;
+  background-color: #0062ff;
+  background: linear-gradient(to right, #0062ff, #649fff);
 }
 
 </style>
