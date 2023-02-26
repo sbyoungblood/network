@@ -12,27 +12,7 @@
       <div class="col-md-7 middle-hp-col">
         <div class="row posts justify-content-center align-content-between">
           <div class="col-md-12 mb-5 elevation-5 post-form p-4">
-            <form>
-              <div class="row justify-content-evenly mb-4">
-                <div class="col-md-2 d-flex justify-content-center pt-3">
-                  <img :src="account.picture" alt="" class="form-profile-img rounded-circle">
-                </div>
-                <div class="col-md-8 d-flex justify-content-end">
-                  <textarea name="" id="post-body" cols="60" rows="4" class="p-3"></textarea>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-8 offset-1 mt-3 d-flex align-items-center">
-                  <div class="mdi mdi-camera camera ps-3"></div>
-                  <input type="url" class="ms-4 ps-3" id="img-url">
-                </div>
-                <div class="col-md-3 mt-3 d-flex align-items-center">
-                  <button class="btn btn-outline-primary mdi mdi-share share">
-                    POST
-                  </button>
-                </div>
-              </div>
-            </form>
+            <PostForm :account="account"/>
           </div>
           <div v-for="p in posts" class="col-md-12 mb-5 elevation-5 post-cards">
             <PostCard :post="p"/>
@@ -57,6 +37,7 @@ import { postsService } from "../services/PostsService.js"
 import { adsService } from "../services/AdsService.js"
 import { onMounted, computed } from "vue";
 import { AppState } from "../AppState.js";
+import PostForm from "../components/PostForm.vue";
 import AdCard from "../components/AdCard.vue";
 import PostCard from "../components/PostCard.vue";
 
@@ -90,7 +71,7 @@ export default {
             ads: computed(() => AppState.ads)
         };
     },
-    components: { AdCard, PostCard }
+    components: { AdCard, PostCard, PostForm }
 }
 </script>
 
@@ -132,37 +113,7 @@ export default {
   font-weight: 500;
 }
 
-.post-form{
-  height: 280px;
-}
 
-#post-body{
-  border-color: rgb(183, 183, 183);
-  border-width: 3px;
-  background-color: rgba(234, 234, 234, 0.281);
-}
-
-.form-profile-img{
-  height: 80%;
-}
-
-.camera, .share-icon {
-  color: #0062ff;
-  font-size: 30pt;
-}
-
-#img-url{
-  height: 40px;
-  width: 350px;
-  border-color: rgb(183, 183, 183);
-  border-width: 3px;
-  background-color: rgba(234, 234, 234, 0.281);
-}
-
-.share{
-  color: #0062ff;
-  font-size: 15pt;
-}
 
 // .main-hp-row {
 //   display: flex;
