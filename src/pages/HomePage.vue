@@ -61,6 +61,7 @@ export default {
                 Pop.error(("[ERROR]"), error.message);
             }
         }
+
         onMounted(() => {
             getPosts();
             getAds();
@@ -86,6 +87,7 @@ export default {
 .profile-img-sidebar{
   width: 12vw;
   height: 12vw;
+  object-fit: cover;
 }
 
 .sidebar-name{

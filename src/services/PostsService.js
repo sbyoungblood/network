@@ -15,7 +15,7 @@ async getPostsByQuery(query) {
   // const res = await api.get(`api/projects?creatorId=${profileId}`)
   // const res = await api.get('api/projects', { params: {creatorId : profileID} })
   const res = await api.get('api/posts', { params: query })
-  logger.log('getting posts by profile', res.data)
+  // logger.log('getting posts by profile', res.data)
   AppState.posts = res.data.posts.map(p => new Post(p))
 }
 

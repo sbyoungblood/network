@@ -20,9 +20,12 @@
       </div>                
     </div>
     <div class="row img-row justify-content-center mb-4">
-      <div class="col-md-12 px-5 pb-4">
+      <div v-if="post.imgUrl" class="col-md-12 px-5 pb-4">
         <img :src="post.imgUrl" alt="" class="post-img elevation-5">
       </div>
+    </div>
+    <div v-if="profile?.id == post.creatorId" class="row">
+      <div>show this</div>
     </div>
   </div>
 </template>
@@ -33,6 +36,8 @@
 import { Profile } from "../models/Account";
 import { Post } from "../models/Post.js";
 import { profilesService } from "../services/ProfilesService";
+import { computed } from "vue";
+import { AppState } from "../AppState.js";
 
 export default {
   props: {
@@ -48,6 +53,10 @@ export default {
 
   setup(props){
     return {
+
+      profile: computed(() => AppState.profile),
+    
+
       setActiveProfile(){
         profilesService.setActiveProfile(props.profile)
       }
@@ -62,6 +71,7 @@ export default {
 .profile-img{
   height: 10vh;
   width: 10vh;
+  object-fit: cover;
 }
 
 .post-img{

@@ -8,6 +8,18 @@
         <div class="d-flex my-3 justify-content-center sidebar-name">
           {{ profile?.name }}
         </div>
+        <div class="d-flex justify-content-center">
+          {{ profile?.class }}
+        </div>
+        <div class="text-center mt-3 socials">
+          <span>
+            <a :href="profile.github" class="mdi mdi-github"></a>
+            <a :href="profile.linkedin" class="mdi mdi-linkedin"></a>
+          </span>
+        </div>
+        <div class="text-center mt-3">
+          {{ profile.bio }}
+        </div>
       </div>
       <div class="col-md-7 middle-hp-col">
         <div class="row posts justify-content-center align-content-between">
@@ -49,7 +61,7 @@ export default {
     async function getProfileById(){
       try {
         const profileId = route.params.profileId;
-        logger.log('here is the profile id', profileId)
+        // logger.log('here is the profile id', profileId)
         await profilesService.getProfileById(profileId);
       } catch (error) {
         logger.log(error)
@@ -116,5 +128,10 @@ export default {
 .left-hp-col {
   position: fixed;
   left: 0;
+}
+
+.socials{
+  font-family: 'Roboto', sans-serif;
+  font-size: xx-large;
 }
 </style>

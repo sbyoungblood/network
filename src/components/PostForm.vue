@@ -2,7 +2,7 @@
   <form @submit.prevent="handleSubmit">
     <div class="row justify-content-evenly mb-4">
       <div class="col-md-2 d-flex justify-content-center pt-3">
-        <img :src="account?.picture" alt="" class="form-profile-img rounded-circle">
+        <img :src="account?.picture" alt="" class="form-profile-img">
       </div>
       <div class="col-md-8 d-flex justify-content-end">
         <textarea name="" id="post-body" cols="60" rows="4" class="p-3" v-model="editable.body"></textarea>
@@ -36,11 +36,11 @@ export default {
     props: {
       account: {
         type: Account,
-        required: true
+        // required: true
       },
       post: {
         type: Post,
-        required: true
+        // required: true
       }
     },
 
@@ -79,7 +79,10 @@ export default {
 }
 
 .form-profile-img{
-  height: 80%;
+  height: 12vh;
+  width: 12vh;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .camera, .share-icon {
