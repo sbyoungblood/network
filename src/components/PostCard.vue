@@ -2,7 +2,9 @@
   <div class="post-card">
     <div class="row profile-row">
       <div class="col-md-2 ps-5 pt-5 d-flex justify-content-start">
-        <img :src="post.creator.picture" alt="profile-img" class="profile-img rounded-circle elevation-5">
+        <router-link :to="{name: 'Profile', params: {profileId: post.creatorId}}">
+          <img :src="post.creator.picture" alt="profile-img" class="profile-img rounded-circle elevation-5">
+        </router-link>
       </div>
       <div class="col-md-7 pt-5 ps-4 d-flex flex-column justify-content-center">
         <div class="profile-name">{{ post.creator.name }}</div>
@@ -28,17 +30,28 @@
 
 <script>
 
+import { Profile } from "../models/Account";
 import { Post } from "../models/Post.js";
+import { profilesService } from "../services/ProfilesService";
 
 export default {
   props: {
     post: {
       type: Post,
       required: true
+    },
+    profile: {
+      type: Profile,
+      required: true
     }
   },
-  setup(){
-    return {}
+
+  setup(props){
+    return {
+      setActiveProfile(){
+        profilesService.setActiveProfile(props.profile)
+      }
+    }
   }
 }
 </script>

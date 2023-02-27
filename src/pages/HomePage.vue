@@ -57,7 +57,7 @@ export default {
                 await adsService.getAds();
             }
             catch (error) {
-                logger.log(error);
+                // logger.log(error);
                 Pop.error(("[ERROR]"), error.message);
             }
         }
@@ -76,25 +76,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-// .home {
-//   display: grid;
-//   height: 80vh;
-//   place-content: center;
-//   text-align: center;
-//   user-select: none;
 
-//   .home-card {
-//     width: 50vw;
-
-//     >img {
-//       height: 200px;
-//       max-width: 200px;
-//       width: 100%;
-//       object-fit: contain;
-//       object-position: center;
-//     }
-//   }
-// }
 
 .post-cards{
   box-shadow: 4px, 4px, 10px black;
@@ -114,34 +96,9 @@ export default {
 }
 
 
-
-// .main-hp-row {
-//   display: flex;
-//   flex-direction: row;
-//   position: relative;
-//   height: 100vh;
-// }
-
-// .col {
-//   height: 100%;
-//   overflow-y: scroll; /* enable vertical scrolling */
-// }
-
 .left-hp-col {
   position: fixed;
   left: 0;
 }
-
-// .middle-hp-col {
-//   position: absolute;
-//   left: auto; /* set the left position to the width of the left column */
-//   top: 0;
-// }
-
-// .right-hp-col {
-//   position: absolute;
-//   left: 66.66%; /* set the left position to the width of the left and middle columns */
-//   top: 0;
-// }
 
 </style>

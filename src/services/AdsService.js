@@ -7,9 +7,9 @@ import { Ad } from "../models/Ad.js";
 class AdsService {
   async getAds(){
     const res = await api.get('api/ads')
-    logger.log('GET ADS', res.data)
+    // logger.log('GET ADS', res.data)
     AppState.ads = res.data.map(a => new Ad(a))
-    logger.log('APPSTATE ADS', AppState.ads)
+    // logger.log('APPSTATE ADS', AppState.ads)
   }
 }
 

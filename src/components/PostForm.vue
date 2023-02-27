@@ -25,6 +25,8 @@
 
 <script>
 import { Account } from "../models/Account.js";
+import { ref } from "vue";
+import { Post } from "../models/Post.js";
 
 
 export default {
@@ -32,9 +34,17 @@ export default {
       account: {
         type: Account,
         required: true
+      },
+      post: {
+        type: Post,
+        required: true
       }
     },
+
   setup(){
+
+    const editable = ref({})
+
     return {}
   }
 }

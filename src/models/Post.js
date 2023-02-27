@@ -7,7 +7,6 @@ export class Post {
     this.creator = new Profile(data.creator)
     this.creatorId = data.creatorId
     this.imgUrl = data.imgUrl
-    this.creatorId = data.creatorId
     this.likeIds = data.likeIds
     this.likes = data.likes
     this.postId = data.id
