@@ -1,24 +1,37 @@
 <template>
 <div class="container-fluid">
+  <div class="row">
+    <img :src="profile?.coverImg" alt="" class="cover-img">
+  </div>
     <div class="row pt-3 main-hp-row justify-content-end">
       <div class="col-md-2 left-hp-col">       
         <div class="d-flex justify-content-center">
           <img :src="profile?.picture" alt="" class="rounded-circle profile-img-sidebar">
         </div>
-        <div class="d-flex my-3 justify-content-center sidebar-name">
+        <div class="d-flex mt-3 text-center justify-content-center sidebar-name">
           {{ profile?.name }}
         </div>
         <div class="d-flex justify-content-center">
           {{ profile?.class }}
         </div>
         <div class="text-center mt-3 socials">
-          <span>
-            <a :href="profile.github" class="mdi mdi-github"></a>
-            <a :href="profile.linkedin" class="mdi mdi-linkedin"></a>
+          <span v-if="profile?.github">
+            <a :href="profile?.github" target="_blank">
+              <i class="mdi mdi-github"></i>
+            </a>
+          </span>
+          <span v-if="profile?.linkedin">
+            <a :href="profile?.linkedin" target="_blank">
+              <i class="mdi mdi-linkedin"></i>
+            </a>
           </span>
         </div>
-        <div class="text-center mt-3">
-          {{ profile.bio }}
+        <div class="text-center my-3">
+          {{ profile?.bio }}
+        </div>
+        <div class="text-center">
+          <h1 :class="`${profile?.graduated ? 'mdi mdi-account-school' : ''}`">
+          </h1>
         </div>
       </div>
       <div class="col-md-7 middle-hp-col">
@@ -114,6 +127,7 @@ export default {
 .profile-img-sidebar{
   width: 12vw;
   height: 12vw;
+  object-fit: cover;
  
 }
 
@@ -128,10 +142,19 @@ export default {
 .left-hp-col {
   position: fixed;
   left: 0;
+  top: 30vh;
 }
 
 .socials{
   font-family: 'Roboto', sans-serif;
   font-size: xx-large;
+}
+
+.cover-img{
+  height: 30vh;
+  object-fit: cover;
+  object-position: center;
+  padding: 0;
+  margin: 0;
 }
 </style>

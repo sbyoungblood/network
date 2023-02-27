@@ -1,13 +1,11 @@
 <template>
-  <header class="mb-4 sticky-top">
+  <header class="sticky-top">
     <Navbar />
   </header>
   <main>
     <router-view />
   </main>
-   <footer class="bg-dark text-light">
-    Made with 💖 by CodeWorks
-  </footer>
+ 
 </template>
 
 <script>
@@ -40,5 +38,9 @@ footer {
   display: grid;
   place-content: center;
   height: 32px;
+}
+
+header{
+  margin-bottom: 0;
 }
 </style>

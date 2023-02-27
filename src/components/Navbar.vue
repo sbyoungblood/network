@@ -74,9 +74,9 @@ a:hover {
 
 .navbar{
   height: 100px;
-  margin: 0;
   background-color: #0062ff;
   background: linear-gradient(to right, #0062ff, #649fff);
+ 
 }
 
 </style>

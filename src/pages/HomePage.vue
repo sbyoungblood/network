@@ -3,10 +3,26 @@
     <div class="row pt-3 main-hp-row justify-content-end">
       <div class="col-md-2 left-hp-col">       
         <div class="d-flex justify-content-center">
-          <img :src="account.picture" alt="" class="rounded-circle profile-img-sidebar">
+          <img v-if="account?.picture" :src="account?.picture" alt="" class="rounded-circle profile-img-sidebar">
         </div>
         <div class="d-flex my-3 justify-content-center sidebar-name">
           {{ account.name }}
+        </div>
+        <div class="d-flex justify-content-center">
+          {{ account.class }}
+        </div>
+        <div class="text-center mt-3 socials">
+          <span>
+            <a v-if="account.github" :href="account?.github" class="mdi mdi-github"></a>
+            <a v-if="account.linkedin" :href="account?.linkedin" class="mdi mdi-linkedin"></a>
+          </span>
+        </div>
+        <div class="text-center my-3">
+          {{ account?.bio }}
+        </div>
+        <div class="text-center">
+          <h1 :class="`${account.graduated ? 'mdi mdi-account-school' : ''}`">
+          </h1>
         </div>
       </div>
       <div class="col-md-7 middle-hp-col">
