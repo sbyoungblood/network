@@ -1,20 +1,20 @@
 <template>
-  <form>
+  <form @submit.prevent="handleSubmit">
     <div class="row justify-content-evenly mb-4">
       <div class="col-md-2 d-flex justify-content-center pt-3">
-        <img :src="account.picture" alt="" class="form-profile-img rounded-circle">
+        <img :src="account?.picture" alt="" class="form-profile-img rounded-circle">
       </div>
       <div class="col-md-8 d-flex justify-content-end">
-        <textarea name="" id="post-body" cols="60" rows="4" class="p-3"></textarea>
+        <textarea name="" id="post-body" cols="60" rows="4" class="p-3" v-model="editable.body"></textarea>
       </div>
     </div>
     <div class="row">
       <div class="col-md-8 offset-1 mt-3 d-flex align-items-center">
         <div class="mdi mdi-camera camera ps-3"></div>
-        <input type="url" class="ms-4 ps-3" id="img-url">
+        <input type="url" class="ms-4 ps-3" id="img-url" v-model="editable.imgUrl">
       </div>
       <div class="col-md-3 mt-3 d-flex align-items-center">
-        <button class="btn btn-outline-primary mdi mdi-share share">
+        <button type="submit" class="btn btn-outline-primary mdi mdi-share share">
           POST
         </button>
       </div>
@@ -27,6 +27,9 @@
 import { Account } from "../models/Account.js";
 import { ref } from "vue";
 import { Post } from "../models/Post.js";
+import { logger } from "../utils/Logger";
+import Pop from "../utils/Pop";
+import { postsService } from "../services/PostsService";
 
 
 export default {
@@ -45,7 +48,19 @@ export default {
 
     const editable = ref({})
 
-    return {}
+    return {
+      editable,
+      async handleSubmit(){
+        try {
+          const post = editable.value
+          await postsService.createPost(editable.value)
+          editable.value = {}
+        } catch (error) {
+          logger.log(error)
+          Pop.error("[ERROR]", error.message)
+        }
+      }
+    }
   }
 }
 </script>

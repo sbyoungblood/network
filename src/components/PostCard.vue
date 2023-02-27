@@ -42,7 +42,7 @@ export default {
     },
     profile: {
       type: Profile,
-      required: true
+      // required: true
     }
   },
 

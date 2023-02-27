@@ -84,8 +84,8 @@ export default {
 }
 
 .profile-img-sidebar{
-  width: 80%;
-  height: auto;
+  width: 12vw;
+  height: 12vw;
 }
 
 .sidebar-name{

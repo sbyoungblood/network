@@ -18,6 +18,12 @@ async getPostsByQuery(query) {
   logger.log('getting posts by profile', res.data)
   AppState.posts = res.data.posts.map(p => new Post(p))
 }
+
+async createPost(postData){
+  const res = await api.post('api/posts', postData)
+  let newPost = new Post(res.data)
+  AppState.posts = [newPost, ...AppState.posts]
+}
 }
 
 export const postsService = new PostsService
