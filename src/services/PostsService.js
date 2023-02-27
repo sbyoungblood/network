@@ -10,6 +10,8 @@ async getPosts(){
   AppState.posts = res.data.posts.map(p => new Post(p))
   // logger.log('APPSTATE POSTS', AppState.posts)
 }
+
+
 }
 
 export const postsService = new PostsService
