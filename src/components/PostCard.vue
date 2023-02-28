@@ -24,8 +24,10 @@
         <img :src="post.imgUrl" alt="" class="post-img elevation-5">
       </div>
     </div>
-    <div v-if="profile?.id == post.creatorId" class="row">
-      <div>show this</div>
+    <!-- TODO 'account' is the object/information of the user logged in -->
+    <!-- REVIEW  does the person logged in have the rights to manipulate this?-->
+    <div v-if="account?.id == post.creatorId" class="row justify-content-end">
+      <div class="mdi mdi-trash-can-outline text-end display-6" @click="deletePost()"></div>
     </div>
   </div>
 </template>
@@ -41,6 +43,7 @@ import { AppState } from "../AppState.js";
 
 export default {
   props: {
+    // REVIEW 'post' is the equivalent of template +=
     post: {
       type: Post,
       required: true
@@ -55,7 +58,8 @@ export default {
     return {
 
       profile: computed(() => AppState.profile),
-    
+      account: computed(() => AppState.account),
+    // bring in the acct
 
       setActiveProfile(){
         profilesService.setActiveProfile(props.profile)

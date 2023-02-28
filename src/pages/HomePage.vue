@@ -30,6 +30,7 @@
           <div class="col-md-12 mb-5 elevation-5 post-form p-4">
             <PostForm :account="account"/>
           </div>
+        <!-- REVIEW 33-35 is the same thing as template = '', appstate.foreach, template += -->
           <div v-for="p in posts" class="col-md-12 mb-5 elevation-5 post-cards">
             <PostCard :post="p"/>
           </div>
@@ -41,6 +42,16 @@
             <AdCard :ad="a"/>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-6 d-flex justify-content-between mb-4 py-5">
+        <span>
+          <button class="btn btn-outline-dark" :disabled="!previousPage" @click="changePage(previousPage)">Previous</button>   
+        </span>
+        <span>
+          <button class="btn btn-outline-dark" :disabled="!nextPage" @click="changePage(nextPage)">Next</button>
+        </span>
       </div>
     </div>
   </div>
@@ -85,7 +96,19 @@ export default {
         return {
             posts: computed(() => AppState.posts),
             account: computed(() => AppState.account),
-            ads: computed(() => AppState.ads)
+            ads: computed(() => AppState.ads),
+            nextPage: computed(() => AppState.nextPage),
+            previousPage: computed(() => AppState.previousPage),
+
+            async changePage(url) {
+                try {
+                    await postsService.changePage(url);
+                }
+                catch (error) {
+                    logger.error(error);
+                    Pop.error(("[ERROR]"), error.message);
+                }
+            }
         };
     },
     components: { AdCard, PostCard, PostForm }

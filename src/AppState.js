@@ -17,4 +17,7 @@ export const AppState = reactive({
   
   /** @type {import('./models/Ad.js').Ad[]} */
   ads: [],
+
+  nextPage: null,
+  previousPage: null
 })

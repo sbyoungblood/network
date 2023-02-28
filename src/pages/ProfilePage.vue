@@ -52,6 +52,16 @@
         </div>
       </div>
     </div>
+    <div class="row justify-content-center">
+      <div class="col-md-6 d-flex justify-content-between mb-4 py-5">
+        <span>
+          <button class="btn btn-outline-dark" :disabled="!previousPage" @click="changePage(previousPage)">Previous</button>   
+        </span>
+        <span>
+          <button class="btn btn-outline-dark" :disabled="!nextPage" @click="changePage(nextPage)">Next</button>
+        </span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -110,7 +120,20 @@ export default {
     return {
       profile: computed(() => AppState.profile),
       posts: computed(() => AppState.posts),
-      ads: computed(() => AppState.ads)
+      ads: computed(() => AppState.ads),
+      nextPage: computed(() => AppState.nextPage),
+      previousPage: computed(() => AppState.previousPage),
+
+      async changePage(url) {
+                try {
+                    await profilesService.changePage(url);
+                }
+                catch (error) {
+                    logger.error(error);
+                    Pop.error(("[ERROR]"), error.message);
+                }
+            }
+
     }
   }
 }

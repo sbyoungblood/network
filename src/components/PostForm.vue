@@ -50,6 +50,7 @@ export default {
 
     return {
       editable,
+      
       async handleSubmit(){
         try {
           const post = editable.value
