@@ -37,6 +37,27 @@ async changePage(url){
   AppState.nextPage = res.data.older
   AppState.previousPage = res.data.newer
 }
+
+async likePost(){
+
+}
+
+async deletePost(postId){
+  const res = await api.delete('api/posts/' + postId)
+  let i = AppState.posts.findIndex(p => p.postId == postId)
+  if (i != -1) {
+    AppState.posts.splice(i, 1)
+  }
+}
+
+async removeCar(carId) {
+  const res = await api.delete('auth/api/cars/' + carId)
+  let i = AppState.cars.findIndex(c => c.id == carId)
+  if (i != -1) {
+    AppState.cars.splice(i, 1)
+  }
+}
+
 }
 
 export const postsService = new PostsService()

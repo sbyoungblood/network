@@ -11,7 +11,7 @@
         <div>{{post.createdAt}}</div>
       </div>
       <div class="col-md-3 pt-5 pe-5 d-flex justify-content-end align-items-center">
-        <span class="mdi mdi-heart-outline heart">{{ post.likes.length }}</span>
+        <span class="mdi mdi-heart-outline heart" @click="likePost()">{{ post.likes.length }}</span>
       </div>
     </div>
     <div class="row body-row my-4">
@@ -27,7 +27,7 @@
     <!-- TODO 'account' is the object/information of the user logged in -->
     <!-- REVIEW  does the person logged in have the rights to manipulate this?-->
     <div v-if="account?.id == post.creatorId" class="row justify-content-end">
-      <div class="mdi mdi-trash-can-outline text-end display-6" @click="deletePost()"></div>
+      <div class="mdi mdi-trash-can-outline text-end display-6 selectable" @click="deletePost(post.postId)"></div>
     </div>
   </div>
 </template>
@@ -40,6 +40,9 @@ import { Post } from "../models/Post.js";
 import { profilesService } from "../services/ProfilesService";
 import { computed } from "vue";
 import { AppState } from "../AppState.js";
+import Pop from "../utils/Pop";
+import { postsService } from "../services/PostsService";
+import { useRoute } from "vue-router";
 
 export default {
   props: {
@@ -55,11 +58,35 @@ export default {
   },
 
   setup(props){
-    return {
 
+    const route = useRoute()
+    const postId = route.params.postId
+
+
+    return {
+      postId,
       profile: computed(() => AppState.profile),
       account: computed(() => AppState.account),
+      posts: computed(() => AppState.posts),
     // bring in the acct
+
+    async deletePost(postId) {
+        try {
+
+          await postsService.deletePost(postId)
+        } catch (error) {
+          Pop.error(error, '[Deleting Post]')
+        }
+      },
+
+
+      async likePost(){
+        try {
+          await postsService.likePost()
+        } catch (error) {
+          Pop.error("[ERROR]", error.message)
+        }
+      },
 
       setActiveProfile(){
         profilesService.setActiveProfile(props.profile)
