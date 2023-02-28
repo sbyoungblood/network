@@ -7,27 +7,27 @@
         </router-link>
       </div>
       <div class="col-md-7 pt-5 ps-4 d-flex flex-column justify-content-center">
-        <div class="profile-name">{{ post.creator.name }}</div>
+        <div class="profile-name">{{ post?.creator?.name }}</div>
         <div>{{post.createdAt}}</div>
       </div>
       <div class="col-md-3 pt-5 pe-5 d-flex justify-content-end align-items-center">
-        <span class="mdi mdi-heart-outline heart" @click="likePost()">{{ post.likes.length }}</span>
+        <span class="mdi mdi-heart-outline heart selectable" @click="likePost(post.postId)">{{ post.likes?.length }}</span>
       </div>
     </div>
     <div class="row body-row my-4">
       <div class="col-md-12 px-5">
-        {{post.body}}
+        {{post?.body}}
       </div>                
     </div>
     <div class="row img-row justify-content-center mb-4">
-      <div v-if="post.imgUrl" class="col-md-12 px-5 pb-4">
+      <div v-if="post?.imgUrl" class="col-md-12 px-5 pb-4">
         <img :src="post.imgUrl" alt="" class="post-img elevation-5">
       </div>
     </div>
     <!-- TODO 'account' is the object/information of the user logged in -->
     <!-- REVIEW  does the person logged in have the rights to manipulate this?-->
     <div v-if="account?.id == post.creatorId" class="row justify-content-end">
-      <div class="mdi mdi-trash-can-outline text-end display-6 selectable" @click="deletePost(post.postId)"></div>
+      <div class="mdi mdi-trash-can-outline text-end display-6 selectable" @click="deletePost(post?.postId)"></div>
     </div>
   </div>
 </template>
@@ -61,10 +61,12 @@ export default {
 
     const route = useRoute()
     const postId = route.params.postId
+    const accountId = AppState.account.id
 
 
     return {
       postId,
+      accountId,
       profile: computed(() => AppState.profile),
       account: computed(() => AppState.account),
       posts: computed(() => AppState.posts),
@@ -80,9 +82,9 @@ export default {
       },
 
 
-      async likePost(){
+      async likePost(postId){
         try {
-          await postsService.likePost()
+          await postsService.likePost(postId)
         } catch (error) {
           Pop.error("[ERROR]", error.message)
         }

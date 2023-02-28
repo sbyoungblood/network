@@ -38,8 +38,9 @@ async changePage(url){
   AppState.previousPage = res.data.newer
 }
 
-async likePost(){
-
+async likePost(postId){
+const res = await api.post('api/posts/' + postId +'/like')
+AppState.posts = res.data
 }
 
 async deletePost(postId){
@@ -50,13 +51,7 @@ async deletePost(postId){
   }
 }
 
-async removeCar(carId) {
-  const res = await api.delete('auth/api/cars/' + carId)
-  let i = AppState.cars.findIndex(c => c.id == carId)
-  if (i != -1) {
-    AppState.cars.splice(i, 1)
-  }
-}
+
 
 }
 
